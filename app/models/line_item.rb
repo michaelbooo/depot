@@ -6,5 +6,12 @@
 # We make no guarantees that this code is fit for any purpose. 
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
-module ProductsHelper
+class LineItem < ActiveRecord::Base
+  belongs_to :product
+  belongs_to :cart
+  attr_accessible :cart_id, :product_id
+
+  def total_price
+    product.price * quantity
+  end
 end
